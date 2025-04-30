@@ -1,0 +1,70 @@
+body {
+  font-family: sans-serif; /* Define uma fonte simples e legível */
+  margin: 0; /* Remove a margem padrão do navegador */
+  padding: 0; /* Remove o preenchimento padrão */
+  background: #f2f3f5; /* Cor de fundo clara para a página */
+  color: #333; /* Cor padrão do texto (cinza escuro) */
+}
+
+header {
+  text-align: center; /* Centraliza o conteúdo do cabeçalho */
+  padding: 2rem 1rem; /* Espaçamento interno: cima/baixo 2rem, lados 1rem */
+  background-color: #4f46e5; /* Fundo roxo (cor do projeto) */
+  color: white; /* Texto branco no cabeçalho */
+}
+
+header h1 {
+  margin: 0; /* Remove margem do título */
+  font-size: 2.5rem; /* Tamanho grande para o título principal */
+}
+
+header p {
+  margin-top: 0.5rem; /* Espaço entre o título e o parágrafo */
+  font-size: 1rem; /* Tamanho padrão de texto */
+}
+
+.cards {
+  display: flex; /* Organiza os cards em linha (horizontal) */
+  flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+  justify-content: center; /* Centraliza os cards na tela */
+  gap: 2rem; /* Espaço entre os cards */
+  padding: 2rem; /* Espaçamento interno da seção */
+}
+
+.card {
+  background-color: white; /* Fundo branco para cada card */
+  padding: 1.5rem; /* Espaço interno dentro do card */
+  border-radius: 12px; /* Bordas arredondadas */
+  width: 250px; /* Largura fixa de cada card */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra leve para dar profundidade */
+}
+
+.card h2 {
+  margin-top: 0; /* Remove espaço acima do subtítulo */
+  color: #4f46e5; /* Cor roxa nos títulos dos cards */
+}
+
+.card ul {
+  list-style: none; /* Remove bolinhas da lista */
+  padding-left: 0; /* Remove indentação da lista */
+  margin-top: 1rem; /* Espaço acima da lista */
+}
+
+.card li {
+  margin-bottom: 0.5rem; /* Espaço entre os itens da lista */
+}
+
+.grafico {
+  text-align: center; /* Centraliza o conteúdo da seção do gráfico */
+  padding: 2rem; /* Espaçamento interno */
+}
+
+.grafico-placeholder {
+  background-color: white; /* Fundo branco para o "bloco do gráfico" */
+  padding: 2rem; /* Espaçamento interno */
+  border-radius: 12px; /* Bordas arredondadas */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  margin: 0 auto; /* Centraliza horizontalmente */
+  width: 90%; /* Largura relativa à tela */
+  max-width: 500px; /* Limite máximo de largura para telas grandes */
+}
