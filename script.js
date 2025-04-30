@@ -33,35 +33,62 @@ botaoFiltro.addEventListener("click", () => {
   }
 });
 
-// Adiciona evento de clique no botão
 botaoAdicionar.addEventListener("click", () => {
-  const texto = inputTarefa.value.trim(); // .trim() remove espaços em branco
-  novaTarefa.addEventListener("click", () => alternarStatus(novaTarefa));
-
+  const texto = inputTarefa.value.trim();
   if (texto === "") {
-    alert("Digite uma tarefa antes de adicionar!"); // Validação simples
-    return; // Sai da função
+    alert("Digite uma tarefa antes de adicionar!");
+    return;
   }
 
-  // Cria um novo <li> com a tarefa pendente
-  const novaTarefa = document.createElement("li"); // Cria a tag <li>
-  novaTarefa.textContent = `🔜 ${texto}`; // Define o texto com emoji de pendente
+  const novaTarefa = document.createElement("li");
+  const textoTarefa = document.createTextNode(`🔜 ${texto}`);
 
-  listaFrontend.appendChild(novaTarefa); // Adiciona na lista de tarefas
+  const botaoExcluir = document.createElement("button");
+  botaoExcluir.textContent = "🗑️";
+  botaoExcluir.className = "btn-excluir";
+  botaoExcluir.addEventListener("click", (e) => {
+    e.stopPropagation(); // Evita que o clique acione troca de status
+    novaTarefa.remove();
+  });
 
-  inputTarefa.value = ""; // Limpa o campo de texto após adicionar
+  // ⚠️ Aqui está o que estava faltando: clique na tarefa para alternar status
+  novaTarefa.addEventListener("click", () => {
+    alternarStatus(novaTarefa);
+  });
+
+  novaTarefa.appendChild(textoTarefa);
+  novaTarefa.appendChild(botaoExcluir);
+  listaFrontend.appendChild(novaTarefa);
+
+  inputTarefa.value = "";
 });
 
-// Pega todas as <li> de tarefa no início e adiciona o clique
-document.querySelectorAll(".card li").forEach((tarefa) => {
-  tarefa.addEventListener("click", () => alternarStatus(tarefa));
-});
-
-// Função que alterna o status de uma tarefa entre pendente e concluída
 function alternarStatus(tarefa) {
-  if (tarefa.textContent.includes("🔜")) {
-    tarefa.textContent = tarefa.textContent.replace("🔜", "✅"); // Troca pendente por concluído
-  } else if (tarefa.textContent.includes("✅")) {
-    tarefa.textContent = tarefa.textContent.replace("✅", "🔜"); // Troca de volta para pendente
+  // Verifica se o primeiro filho do <li> é um texto
+  const textoOriginal = tarefa.firstChild;
+
+  if (textoOriginal.nodeType === Node.TEXT_NODE) {
+    // Altera somente o conteúdo do texto, sem remover os botões
+    if (textoOriginal.textContent.includes("🔜")) {
+      textoOriginal.textContent = textoOriginal.textContent.replace("🔜", "✅");
+    } else if (textoOriginal.textContent.includes("✅")) {
+      textoOriginal.textContent = textoOriginal.textContent.replace("✅", "🔜");
+    }
   }
 }
+
+// Para tarefas existentes no HTML ao carregar a página
+document.querySelectorAll(".card li").forEach((tarefa) => {
+  // Cria botão
+  const botaoExcluir = document.createElement("button");
+  botaoExcluir.textContent = "🗑️";
+  botaoExcluir.className = "btn-excluir";
+
+  // Adiciona clique
+  botaoExcluir.addEventListener("click", (e) => {
+    e.stopPropagation(); // Evita alternar status ao clicar no botão
+    tarefa.remove();
+  });
+
+  tarefa.appendChild(botaoExcluir); // Adiciona ao <li>
+});

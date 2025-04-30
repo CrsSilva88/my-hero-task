@@ -68,3 +68,17 @@ header p {
   width: 90%; /* Largura relativa à tela */
   max-width: 500px; /* Limite máximo de largura para telas grandes */
 }
+
+.btn-excluir {
+  all: unset; /* Remove todos os estilos padrão do botão */
+  cursor: pointer; /* Mãozinha ao passar o mouse */
+  font-size: 1rem; /* Tamanho do emoji */
+  margin-left: 0.5rem; /* Espaço entre o texto e o ícone */
+  line-height: 1; /* Remove espaçamento vertical do botão */
+  display: inline-block; /* Garante que fique ao lado do texto */
+  vertical-align: middle; /* Alinha com o texto */
+}
+
+.btn-excluir:hover {
+  color: red; /* Destaque ao passar o mouse */
+}
