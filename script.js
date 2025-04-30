@@ -36,6 +36,7 @@ botaoFiltro.addEventListener("click", () => {
 // Adiciona evento de clique no botão
 botaoAdicionar.addEventListener("click", () => {
   const texto = inputTarefa.value.trim(); // .trim() remove espaços em branco
+  novaTarefa.addEventListener("click", () => alternarStatus(novaTarefa));
 
   if (texto === "") {
     alert("Digite uma tarefa antes de adicionar!"); // Validação simples
@@ -50,3 +51,17 @@ botaoAdicionar.addEventListener("click", () => {
 
   inputTarefa.value = ""; // Limpa o campo de texto após adicionar
 });
+
+// Pega todas as <li> de tarefa no início e adiciona o clique
+document.querySelectorAll(".card li").forEach((tarefa) => {
+  tarefa.addEventListener("click", () => alternarStatus(tarefa));
+});
+
+// Função que alterna o status de uma tarefa entre pendente e concluída
+function alternarStatus(tarefa) {
+  if (tarefa.textContent.includes("🔜")) {
+    tarefa.textContent = tarefa.textContent.replace("🔜", "✅"); // Troca pendente por concluído
+  } else if (tarefa.textContent.includes("✅")) {
+    tarefa.textContent = tarefa.textContent.replace("✅", "🔜"); // Troca de volta para pendente
+  }
+}
